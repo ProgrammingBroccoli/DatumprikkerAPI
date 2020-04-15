@@ -1,7 +1,7 @@
-language: Java
+language: java
+before_script:
+  - composer install --no-interaction
+
 script:
-  - echo 'Build starts!!'
-  - echo 'Installing Deps!'
-  - yarn
-  - echo 'Testing!'
-  - npm run test:prod
+
+
