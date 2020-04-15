@@ -1,33 +1,29 @@
 package com.ProgrammingBroccoli.restservice.RestApp.Controllers;
 import com.ProgrammingBroccoli.restservice.RestApp.Models.Event;
 import com.ProgrammingBroccoli.restservice.RestApp.Services.EventLogic;
-import net.minidev.json.JSONArray;
-import net.minidev.json.JSONObject;
-import org.hibernate.validator.constraints.CodePointLength;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("api/event")
 @RestController
+
 public class EventController {
-    EventLogic logic;
 
-    public EventController(){
-        logic = new EventLogic();
+    @Autowired
+    private EventLogic logic;
+
+    @GetMapping
+    public List<Event> GetAllEvents(){
+        return logic.GetAllEvents();
     }
 
-    @PostMapping ("/Event/Create")
-    public void CreateEvent(String eventName, String description){
-        Event event = new Event(eventName, description);
+    @PostMapping
+    public void CreateEvent(@RequestBody Event event){
+        logic.CreateEvent(event);
     }
 
-    @GetMapping ("Event/All")
-    public ResponseEntity<String> GetAllEvents(){
-        String jsonA = JSONArray.toJSONString(logic.GetAllEvents());
-        return new ResponseEntity<String>(jsonA, HttpStatus.OK);
-    }
+
 }

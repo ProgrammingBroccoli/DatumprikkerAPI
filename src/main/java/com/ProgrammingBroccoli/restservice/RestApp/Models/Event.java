@@ -1,16 +1,35 @@
 package com.ProgrammingBroccoli.restservice.RestApp.Models;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.*;
+import java.util.UUID;
 
-import java.util.List;
-
+@Entity
+@Table(name = "events")
 public class Event {
     //USE DATETIME FORMATTER FOR TIMES
-    String Name;
-    String Description;
+    @Id
+    @GeneratedValue
+    public Long id;
 
-    public Event(String name, String Description){
-        this.Name = name;
-        this.Description = Description;
+    @Column
+    public String name;
+
+    @Column
+    public String description;
+
+    @OneToOne
+    public User organizer;
+
+    public Event(){
+
     }
+
+    public Event (@JsonProperty("name") String name,
+                  @JsonProperty("description") String description){
+        this.name = name;
+        this.description = description;
+    }
+
+
 }
