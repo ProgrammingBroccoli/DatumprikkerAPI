@@ -1,5 +1,7 @@
 package com.ProgrammingBroccoli.restservice.RestApp.Models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,10 +14,24 @@ public class Invitee {
     @Column
     public String name;
 
-    public Invitee(int id, String name){
-        this.id = 1;
+    @Column
+    public String email;
+
+    @ManyToOne
+    public Event event;
+
+
+    public Invitee(@JsonProperty("name") String name,
+                   @JsonProperty("email") String email){
         this.name = name;
+        this.email = email;
     }
+    public Invitee(String name, String email, Event event){
+        this.name = name;
+        this.email = email;
+        this.event = event;
+    }
+
     public Invitee(){
 
     }

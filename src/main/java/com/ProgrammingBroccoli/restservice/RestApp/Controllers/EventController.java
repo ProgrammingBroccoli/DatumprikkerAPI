@@ -1,7 +1,7 @@
 package com.ProgrammingBroccoli.restservice.RestApp.Controllers;
 import com.ProgrammingBroccoli.restservice.RestApp.Models.Event;
-import com.ProgrammingBroccoli.restservice.RestApp.Services.EventLogic;
-import com.google.gson.Gson;
+import com.ProgrammingBroccoli.restservice.RestApp.Services.EventService;
+import com.ProgrammingBroccoli.restservice.RestApp.Services.InviteeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,16 +13,16 @@ import java.util.List;
 public class EventController {
 
     @Autowired
-    private EventLogic logic;
+    private EventService eventService;
 
     @GetMapping
     public List<Event> GetAllEvents(){
-        return logic.GetAllEvents();
+        return eventService.GetAllEvents();
     }
 
     @PostMapping
     public void CreateEvent(@RequestBody Event event){
-        logic.CreateEvent(event);
+        eventService.CreateEvent(event);
     }
 
 

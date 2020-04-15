@@ -10,7 +10,7 @@ public class Event {
     //USE DATETIME FORMATTER FOR TIMES
     @Id
     @GeneratedValue
-    public Long id;
+    public UUID id;
 
     @Column
     public String name;
