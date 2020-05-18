@@ -10,6 +10,7 @@ public class Event {
     //USE DATETIME FORMATTER FOR TIMES
     @Id
     @GeneratedValue
+    @JsonProperty("id")
     public UUID id;
 
     @Column

@@ -24,8 +24,9 @@ public class EventService {
         return events;
     }
 
-    public void CreateEvent(Event event) {
-        eventRepository.save(event);
+    public UUID CreateEvent(Event event) {
+        //Event test = eventRepository.save(event);
+        return eventRepository.save(event).id;
     }
 
 

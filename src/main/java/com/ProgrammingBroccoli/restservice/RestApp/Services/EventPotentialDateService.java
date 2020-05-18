@@ -10,6 +10,6 @@ public class EventPotentialDateService {
     @Autowired
     public EventPotentialDateRepository repository;
     public void SaveDate(Event_PotentialDate date) {
-        repository.save(date);
+        //repository.save(date);
     }
 }
